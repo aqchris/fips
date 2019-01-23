@@ -1,6 +1,7 @@
 from sys import argv 
 import subprocess
 import ssh_subprocess
+import re
 
 
 Script, Hosts = argv
@@ -35,6 +36,7 @@ def package_builder(PKG_FILE):
 		PName = Words[1]
 		PVersion = Words[3]
 		DICT_packages[PName] = PVersion
+		package_names.append(PName)
 	FH_packages.close
 	'''print "\n#####################\n"
 	print DICT_packages["strongswan-tnc-pdp"] '''
@@ -56,6 +58,7 @@ for Server in list_of_hosts:
 
 PKG_FILE = "package-list"
 DICT_packages = {}
+package_names = []
 package_builder(PKG_FILE)
 
 	## Now we have a dictionary of name:value pairs for all the FIPS packages in 'DICT_packages'  ##
@@ -65,4 +68,12 @@ package_builder(PKG_FILE)
 for Server in list_of_hosts:
 	print "\t###\t{}\t###".format(Server)
 	server_package_manifest = "{}-manifest.txt".format(Server)
-	for fips_pkg_name in 
+	for fpkg_name in package_names:
+		print "\nSearching for package {} in {}".format(fpkg_name, server_package_manifest)
+		# \blibssl-dev+\S+\s+\S+
+		fpkg_result = re.search(r"\blibssl-dev", fpkg_line)
+		print fpkg_result
+		#print fpkg_result.groups()
+
+		
+
