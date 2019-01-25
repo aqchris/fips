@@ -8,14 +8,6 @@ Package: ssh-krb5 Version: 1:7.2p2-4ubuntu2.fips.2.2.1
 Package: strongswan Version: 5.3.5-1ubuntu3.fips.3.3
 Package: strongswan-nm Version: 5.3.5-1ubuntu3.fips.3.3
 Package: strongswan-charon Version: 5.3.5-1ubuntu3.fips.3.3
-[cloudservicesdev|hosting-dev:cgordon6] ~/Working$ 
-[cloudservicesdev|hosting-dev:cgordon6] ~/Working$ 
-[cloudservicesdev|hosting-dev:cgordon6] ~/Working$ 
-[cloudservicesdev|hosting-dev:cgordon6] ~/Working$ 
-[cloudservicesdev|hosting-dev:cgordon6] ~/Working$ 
-[cloudservicesdev|hosting-dev:cgordon6] ~/Working$ 
-[cloudservicesdev|hosting-dev:cgordon6] ~/Working$ 
-[cloudservicesdev|hosting-dev:cgordon6] ~/Working$ cat fips-pkg-lst.txt 
 Package: libssl-dev Version: 1.0.2g-1ubuntu4.fips.4.6.3
 Package: openssh-client Version: 1:7.2p2-4ubuntu2.fips.2.2.1
 Package: openssh-server Version: 1:7.2p2-4ubuntu2.fips.2.2.1

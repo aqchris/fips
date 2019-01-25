@@ -19,8 +19,8 @@ test_var = "zsh-common"
 fh = open('package-list')
 #match = re.match(r"ii\s+(\S+)\s+(\S+)", test_string)
 match = re.search(r"({})".format(test_var), test_string)
-print match
-print match.groups()
+#print match
+#print match.groups()
 fh.close
 '''first function loops over the lines and builds my dictionary
 second function matches for each line given, extract the package name and version
@@ -31,3 +31,12 @@ if s.find(test_var) != -1:
     print('true')
 print s.find(test_var)
 fh.close
+
+pkg = "openssh-server"
+with open('package.manifest', 'r+') as fh:
+  data = mmap.mmap(fh.fileno(), 0)
+  mo = re.search(r"({})\s+(\S+)".format(pkg), data)
+  if mo:
+    print "found package", mo.group(1)
+    print mo.groups()
+

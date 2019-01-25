@@ -1,5 +1,7 @@
 import re
 
+''' This is how I will parse the package manifest '''
+
 fh = open('package.manifest')
 for line in fh:
     # in python 2

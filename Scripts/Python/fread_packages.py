@@ -9,10 +9,11 @@ Txt = open(PKG_FILE, 'r')
 Pkg_Pair = {}
 
 for Line in Txt:
-	Word = Line.split()
-	#print word
-	#print word[1] + " " + word[3]
-	PName = Word[1]
-	PVersion = Word[3]
+	Words = Line.split()
+	PName = Words[1]
+	PVersion = Words[3]
 	Pkg_Pair[PName] = PVersion
-	print Pkg_Pair
+
+Txt.close
+print "\n#####################\n"
+print Pkg_Pair["strongswan-tnc-pdp"]

@@ -18,5 +18,7 @@ def PARSE_HOSTS(Hosts):
 		print "{}) {}".format(Index, i)
 		Hosts.append(i)
 		Index = Index + 1
+	return Host_list
 
-PARSE_HOSTS(Hosts)
+#PARSE_HOSTS(Hosts)
+print (PARSE_HOSTS(Hosts))
