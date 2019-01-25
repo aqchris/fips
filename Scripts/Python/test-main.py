@@ -2,6 +2,7 @@ from sys import argv
 import subprocess
 import ssh_subprocess
 import re
+import mmap
 
 
 Script, Hosts = argv
@@ -52,7 +53,7 @@ list_of_hosts = PARSE_HOSTS(Hosts)
 for Server in list_of_hosts:
 	print "< < Generating package manifest for {}".format(Server)
 	print "\n"
-	Retrieve_Manifest(Server, "sudo dpkg -l")
+	Retrieve_Manifest(Server, "sudo dpkg-query -W")
 
 # Step 3) Parse the package list
 
@@ -66,14 +67,22 @@ package_builder(PKG_FILE)
 # Step 4) Cross reference the fips package with what's installed on the server
 
 for Server in list_of_hosts:
-	print "\t###\t{}\t###".format(Server)
+	print "\n"
+	print "########################################"
+	print "###  {}".format(Server)
+	print "########################################"
+	print "\n"
 	server_package_manifest = "{}-manifest.txt".format(Server)
 	for fpkg_name in package_names:
 		print "\nSearching for package {} in {}".format(fpkg_name, server_package_manifest)
-		# \blibssl-dev+\S+\s+\S+
-		fpkg_result = re.search(r"\blibssl-dev", fpkg_line)
-		print fpkg_result
-		#print fpkg_result.groups()
+		with open(server_package_manifest, 'r+') as fh:
+			data = mmap.mmap(fh.fileno(), 0)
+			result = re.search(r"({}.*)".format(fpkg_name), data)
+			try:
+				print "\t+++++\t{}\t+++++".format(result.group())
+			except AttributeError:
+				print "{} NOT FOUND on {}".format(fpkg_name, Server)
+				#print "found package", result.group()
+				#print result.groups()
 
-		
 
