@@ -12,11 +12,9 @@ def PARSE_HOSTS(Hosts):
 	Txt = open(Hosts)
 	Content = Txt.read()
 	Host_list = Content.split(',')
-	#print "\n \n The hosts in question are as follows: \n \n "
 	Hosts = []
 	Index = 0
 	for vm_name in Host_list:
-	#	print "{}) {}".format(Index, i)
 		vm_name = "{}.cgordon6.srvs.ahdev.co".format(vm_name)
 		Hosts.append(vm_name)
 		Index = Index + 1
@@ -25,10 +23,8 @@ def PARSE_HOSTS(Hosts):
 def Retrieve_Manifest(Host_name, cmd):
 	config = "/home/cgordon/secure/ec2/hosting-dev/ssh/default"
 	Task = ssh_subprocess.SshTask(config, Host_name, cmd)
-#	Task.start()
 	Task.run()
 	Task.finalize(Host_name)
-	#Retrieve_Manifest("svn-2.cgordon6.srvs.ahdev.co", "sudo dpkg -l")
 
 def package_builder(PKG_FILE):
 	FH_packages = open(PKG_FILE, 'r')
@@ -73,17 +69,13 @@ for Server in list_of_hosts:
 	print "########################################"
 	print "\n"
 	server_package_manifest = "{}-manifest.txt".format(Server)
-	print "\nSearching for packages in {}".format(server_package_manifest)
+	print "\nSearching for packages in {} \n".format(server_package_manifest)
 	for fpkg_name in package_names:
-		#print "\nSearching for package {} in {}".format(fpkg_name, server_package_manifest)
 		with open(server_package_manifest, 'r+') as fh:
 			data = mmap.mmap(fh.fileno(), 0)
 			result = re.search(r"({}.*)".format(fpkg_name), data)
-            #result = re.search(r"(^[A-Z]\S+)\s(\S+)", data)
 			try:
-				print "\t+++++\t{}\t+++++".format(result.groups())
+				print "+++++\t{} was found at version \t{}".format(fpkg_name, result.groups())
 			except AttributeError:
 				pass
 				#print "{} NOT FOUND on {}".format(fpkg_name, Server)
-				#print "found package", result.group()
-				#print result.groups()
