@@ -1,8 +1,8 @@
 # Getting started guide
 
-1. [Overview] (#Overview)
-2. [Prerequisites] (#Prerequisites)
-3. [Running the script] (#Running the script)
+1. Overview
+2. Prerequisites
+3. Running the script
 
 ## Overview
 Acquia has a goal of enabling FIPS 140-2 validated cryptographic modules on servers that deal with federal data. The source of these modules are from Canonical’s Ubuntu Advantage program, which has a private repository where we retrieve these packages and apply them to our Ubuntu 16.04 systems.
